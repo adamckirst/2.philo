@@ -6,7 +6,7 @@
 /*   By: achien-k <achien-k@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:04:19 by achien-k          #+#    #+#             */
-/*   Updated: 2023/09/05 19:13:51 by achien-k         ###   ########.fr       */
+/*   Updated: 2023/09/20 11:44:23 by achien-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,17 @@ typedef struct s_root
 }							t_root;
 
 int		ft_atoi(const char *nptr);
-int		ft_exit(t_root *root, int code, char *msg);
+int		ft_return(t_root *root, int code, char *msg);
 void	ft_putstr_fd(char *s, int fd);
 void	*ft_calloc(size_t nmemb, size_t size);
 
-void	root_init(t_root *root, char **argv);
-void	root_nums(t_root *root, char **argv);
-void	philo_init(t_root *root, t_philo *philo, int tag);
-void	create_forks(t_root *root);
-void	create_mutexes(t_root *root);
-void	create_philo(t_root *root);
-void	create_root(t_root *root, char **argv);
+int		root_init(t_root *root, char **argv);
+int		root_nums(t_root *root, char **argv);
+int		philo_init(t_root *root, t_philo *philo, int tag);
+int		create_forks(t_root *root);
+int		create_mutexes(t_root *root);
+int		create_philo(t_root *root);
+int		create_root(t_root *root, char **argv);
 
 void	*philosopher(void *ptr);
 void	ph_think(t_root *root, t_philo *philo);

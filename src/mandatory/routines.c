@@ -6,7 +6,7 @@
 /*   By: achien-k <achien-k@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:03:06 by achien-k          #+#    #+#             */
-/*   Updated: 2023/09/05 19:00:07 by achien-k         ###   ########.fr       */
+/*   Updated: 2023/09/20 11:45:57 by achien-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/philo.h"
@@ -55,7 +55,7 @@ int	check_died(t_root *root)
 int	check_pulse(t_root *root, t_philo *philo)
 {
 	if (check_died(root) || 
-			(root->eat_limit > 0 && philo->meal_count == root->eat_limit))
+		(root->eat_limit > 0 && philo->meal_count == root->eat_limit))
 		return (0);
 	pthread_mutex_lock(&root->mutex[root->philo_qty + TIME_MUT]);
 	gettimeofday(&root->now, NULL);
