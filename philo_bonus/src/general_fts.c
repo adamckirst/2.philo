@@ -6,7 +6,7 @@
 /*   By: achien-k <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:53:11 by achien-k          #+#    #+#             */
-/*   Updated: 2023/09/21 13:12:11 by achien-k         ###   ########.fr       */
+/*   Updated: 2023/09/21 16:59:10 by achien-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/philo.h"
@@ -14,8 +14,7 @@
 
 void	ft_exit(t_root *root, int code, char *msg)
 {
-	if (root->sem)
-		sem_close(root->sem);
+	finish(root);
 	ft_putstr_fd("Error\n", STDERR_FILENO);
 	ft_putstr_fd(msg, STDERR_FILENO);
 	ft_putstr_fd("\n", STDERR_FILENO);

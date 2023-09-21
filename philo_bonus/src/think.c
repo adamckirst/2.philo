@@ -6,51 +6,46 @@
 /*   By: achien-k <achien-k@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:53:10 by achien-k          #+#    #+#             */
-/*   Updated: 2023/09/21 13:12:09 by achien-k         ###   ########.fr       */
+/*   Updated: 2023/09/21 17:28:33 by achien-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/philo.h"
+#include <pthread.h>
+#include <semaphore.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-void	ph_think(t_root *root, t_philo *philo)
+void	ph_think(t_philo *philo)
 {
-	if (!check_pulse(root, philo))
-		return ;
-	put_log(root, philo, 'T');
-	while (check_pulse(root, philo))
+	put_log(philo->root, philo, 'T');
+	while (philo->forks < 2)
 	{
-		check_forks(root, philo);
-		if (philo->forks == 2)
-			ph_eat(root, philo);
+		sem_wait(philo->root->sem_forks);
+		philo->forks++;
+		put_log(philo->root, philo, 'F');
 	}
+	if (philo->forks == 2)
+		ph_eat(philo->root, philo);
 }
 
-void	check_forks(t_root *root, t_philo *philo)
+void	ph_eat(t_root *root, t_philo *philo)
 {
-	if (!philo->fork_left)
+	sem_wait(philo->sem_time);
+	philo->lasteat_ms = get_time();
+	sem_post(philo->sem_time);
+	put_log(root, philo, 'E');
+	usleep(root->eat_ms * 1000);
+	sem_post(root->sem_forks);
+	sem_post(root->sem_forks);
+	philo->forks = 0;
+	philo->meal_count++;
+	if (root->eat_limit > 0 && philo->meal_count >= root->eat_limit)
 	{
-		if (root->fork[fork_index])
-			pick_fork(root, philo, fork_index, 'L');
+		sem_post(root->sem_satisfied);
+		printf("%d is satisfied\n", philo->tag);
+		exit(EXIT_SUCCESS);
 	}
-	pthread_mutex_unlock(&root->mutex[fork_index]);
-	fork_index = philo->tag - 1;
-	pthread_mutex_lock(&root->mutex[fork_index]);
-	if (!philo->fork_right)
-	{
-		if (root->fork[fork_index])
-			pick_fork(root, philo, fork_index, 'R');
-	}
-	pthread_mutex_unlock(&root->mutex[fork_index]);
-}
-
-void	pick_fork(t_root *root, t_philo *philo, int fork_index, char side)
-{
-	if (root->fork[fork_index])
-	{
-		root->fork[fork_index] = 0;
-		if (side == 'L')
-			philo->fork_left = 1;
-		else if (side == 'R')
-			philo->fork_right = 1;
-		put_log(root, philo, 'F');
-	}
+	put_log(root, philo, 'S');
+	usleep(root->sleep_ms * 1000);
+	ph_think(philo);
 }
