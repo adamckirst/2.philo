@@ -6,10 +6,10 @@
 /*   By: achien-k <achien-k@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:08:49 by achien-k          #+#    #+#             */
-/*   Updated: 2023/09/20 11:43:44 by achien-k         ###   ########.fr       */
+/*   Updated: 2023/09/21 10:40:15 by achien-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../../includes/philo.h"
+#include "../includes/philo.h"
 
 int	create_root(t_root *root, char **argv)
 {

@@ -6,10 +6,10 @@
 /*   By: achien-k <achien-k@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:53:10 by achien-k          #+#    #+#             */
-/*   Updated: 2023/09/05 19:07:55 by achien-k         ###   ########.fr       */
+/*   Updated: 2023/09/21 10:40:47 by achien-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../../includes/philo.h"
+#include "../includes/philo.h"
 
 void	ph_think(t_root *root, t_philo *philo)
 {

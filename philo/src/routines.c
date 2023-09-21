@@ -6,10 +6,10 @@
 /*   By: achien-k <achien-k@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:03:06 by achien-k          #+#    #+#             */
-/*   Updated: 2023/09/20 11:45:57 by achien-k         ###   ########.fr       */
+/*   Updated: 2023/09/21 10:40:42 by achien-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../../includes/philo.h"
+#include "../includes/philo.h"
 
 void	put_log(t_root *root, t_philo *philo, char state)
 {

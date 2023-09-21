@@ -6,10 +6,10 @@
 /*   By: achien-k <achien-k@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:59:50 by achien-k          #+#    #+#             */
-/*   Updated: 2023/09/05 19:04:25 by achien-k         ###   ########.fr       */
+/*   Updated: 2023/09/21 10:40:22 by achien-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../../includes/philo.h"
+#include "../includes/philo.h"
 
 void	ph_eat(t_root *root, t_philo *philo)
 {

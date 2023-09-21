@@ -6,22 +6,19 @@
 #    By: achien-k <achien-k@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/22 14:48:48 by achien-k          #+#    #+#              #
-#    Updated: 2023/09/05 19:09:14 by achien-k         ###   ########.fr        #
+#    Updated: 2023/09/21 10:56:33 by achien-k         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	philo
-NAME_BONUS	=	philo_bonus
+NAME		=	philo_bonus
 CC			=	cc
 CFLAGS		=	-Wall -Wextra -Werror -g
-LFLAGS		=	-lpthread
+LFLAGS		=	-lpthread -lrt
 INC_DIR		=	includes
 SRC_DIR		=	src
 SRCS		=	creates eat_sleep exits general_fts inits think routines main
-SUB_FOLDERS	=	src/mandatory
 OBJ_DIR		=	bin
 OBJ			=	$(foreach src, $(SRCS), $(OBJ_DIR)/$(src).o)
-OBJ_BONUS	=	$(foreach src, $(SRCS_BONUS), $(OBJ_DIR)/$(src).o)
 VPATH		=	$(SRC_DIR) $(SUB_FOLDERS)
 
 all: 			$(NAME)

@@ -6,10 +6,10 @@
 /*   By: achien-k <achien-k@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:02:57 by achien-k          #+#    #+#             */
-/*   Updated: 2023/09/20 11:35:46 by achien-k         ###   ########.fr       */
+/*   Updated: 2023/09/21 10:40:26 by achien-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../../includes/philo.h"
+#include "../includes/philo.h"
 
 int	ft_return(t_root *root, int code, char *msg)
 {
