@@ -6,14 +6,14 @@
 /*   By: achien-k <achien-k@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:03:06 by achien-k          #+#    #+#             */
-/*   Updated: 2023/09/22 16:14:44 by achien-k         ###   ########.fr       */
+/*   Updated: 2023/09/22 19:33:28 by achien-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/philo.h"
 
-unsigned long long int	get_time(void)
+long long int	get_time(void)
 {
-	struct timeval now;
+	struct timeval	now;
 
 	gettimeofday(&now, NULL);
 	return ((now.tv_sec * 1000) + (now.tv_usec / 1000));

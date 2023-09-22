@@ -6,7 +6,7 @@
 /*   By: achien-k <achien-k@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:10:01 by achien-k          #+#    #+#             */
-/*   Updated: 2023/09/22 17:36:43 by achien-k         ###   ########.fr       */
+/*   Updated: 2023/09/22 19:32:07 by achien-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/philo_bonus.h"
@@ -38,8 +38,8 @@ void	root_init(t_root *root, char **argv)
 		root->eat_limit = ft_atoi(argv[5]);
 	else
 		root->eat_limit = 0;
-	if (!root->philo_qty || !root->life_ms || !root->eat_ms ||
-		!root->sleep_ms || (argv[5] && !root->eat_limit))
+	if (!root->philo_qty || !root->life_ms || !root->eat_ms 
+		|| !root->sleep_ms || (argv[5] && !root->eat_limit))
 		ft_exit(root, EXIT_FAILURE, "Provide positive integers");
 	root->pid = ft_calloc(root->philo_qty, sizeof(*root->pid));
 	if (!root->pid)
@@ -71,7 +71,7 @@ void	process_init(t_root *root)
 
 void	philo_init(t_root *root, int tag)
 {
-	t_philo 	philo;
+	t_philo	philo;
 
 	philo.root = root;
 	philo.tag = tag;

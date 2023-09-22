@@ -6,14 +6,14 @@
 /*   By: achien-k <achien-k@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:03:06 by achien-k          #+#    #+#             */
-/*   Updated: 2023/09/22 14:18:20 by achien-k         ###   ########.fr       */
+/*   Updated: 2023/09/22 19:37:45 by achien-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/philo_bonus.h"
 
 unsigned long long int	get_time(void)
 {
-	struct timeval now;
+	struct timeval	now;
 
 	gettimeofday(&now, NULL);
 	return ((now.tv_sec * 1000) + (now.tv_usec / 1000));
@@ -40,30 +40,44 @@ void	put_log(t_root *root, t_philo *philo, char state)
 
 void	*check_pulse(void *ptr)
 {
-	t_philo *philo;
-	t_root	*root;
+	t_philo	*philo;
 
 	philo = (t_philo *)ptr;
-	root = philo->root;
 	while (1)
 	{
 		sem_wait(philo->sem_time);
-		if ((int)(get_time() - philo->lasteat_ms) >= root->life_ms)
+		if ((int)(get_time() - philo->lasteat_ms) >= philo->root->life_ms)
 		{
 			sem_post(philo->sem_time);
-			sem_wait(root->sem_died);
-			put_log(root, philo, 'D');
-			sem_post(root->sem_died);
-			sem_post(root->sem_end);
+			sem_wait(philo->root->sem_died);
+			put_log(philo->root, philo, 'D');
+			sem_post(philo->root->sem_end);
 			return (NULL);
 		}
-		if (root->eat_limit > 0 && philo->meal_count >= root->eat_limit)
+		if (philo->root->eat_limit > 0 && philo->meal_count 
+			>= philo->root->eat_limit)
 		{
 			sem_post(philo->sem_time);
-			sem_post(root->sem_satisfied);
+			sem_post(philo->root->sem_satisfied);
 			return (NULL);
 		}
 		sem_post(philo->sem_time);
-		usleep(1000);
+		usleep(100);
 	}
+}
+
+void	finish(t_root *root)
+{
+	sem_close(root->sem_died);
+	sem_close(root->sem_satisfied);
+	sem_close(root->sem_end);
+	sem_close(root->sem_forks);
+	sem_close(root->sem_print);
+	sem_unlink("/died");
+	sem_unlink("/satisfied");
+	sem_unlink("/forks");
+	sem_unlink("/end");
+	sem_unlink("/print");
+	sem_unlink("/time");
+	free(root->pid);
 }

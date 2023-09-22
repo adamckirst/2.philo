@@ -6,7 +6,7 @@
 /*   By: achien-k <achien-k@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:04:19 by achien-k          #+#    #+#             */
-/*   Updated: 2023/09/22 16:27:18 by achien-k         ###   ########.fr       */
+/*   Updated: 2023/09/22 19:28:36 by achien-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,35 +56,36 @@ typedef struct s_root
 	int						died;
 }							t_root;
 
-int						ft_atoi(const char *nptr);
-int						ft_return(t_root *root, int code, char *msg);
-void					ft_putstr_fd(char *s, int fd);
-void					*ft_calloc(size_t nmemb, size_t size);
+int				ft_atoi(const char *nptr);
+int				ft_return(t_root *root, int code, char *msg);
+void			ft_putstr_fd(char *s, int fd);
+void			*ft_calloc(size_t nmemb, size_t size);
 
-int						root_init(t_root *root, char **argv);
-int						root_nums(t_root *root, char **argv);
-int						philo_init(t_root *root, t_philo *philo, int tag);
-void					*philosopher(void *ptr);
+int				root_init(t_root *root, char **argv);
+int				root_nums(t_root *root, char **argv);
+int				philo_init(t_root *root, t_philo *philo, int tag);
+void			*philosopher(void *ptr);
 
-int						create_forks(t_root *root);
-int						create_mutexes(t_root *root);
-int						create_philo(t_root *root);
-int						create_root(t_root *root, char **argv);
+int				create_forks(t_root *root);
+int				create_mutexes(t_root *root);
+int				create_philo(t_root *root);
+int				create_root(t_root *root, char **argv);
 
-void					ph_think(t_root *root, t_philo *philo);
-void					check_forks(t_root *root, t_philo *philo);
-void					pick_fork(t_root *root, t_philo *philo, int fork_index, char side);
+void			ph_think(t_root *root, t_philo *philo);
+void			check_forks(t_root *root, t_philo *philo);
+void			pick_fork(t_root *root, t_philo *philo, int fork_index, 
+					char side);
 
-void					ph_eat(t_root *root, t_philo *philo);
-void					ph_sleep(t_root *root, t_philo *philo);
-void					return_forks(t_root *root, t_philo *philo);
+void			ph_eat(t_root *root, t_philo *philo);
+void			ph_sleep(t_root *root, t_philo *philo);
+void			return_forks(t_root *root, t_philo *philo);
 
-unsigned long long int	get_time(void);
-int						check_pulse(t_root *root, t_philo *philo);
-int						check_died(t_root *root);
-void					put_log(t_root *root, t_philo *philo, char state);
+long long int	get_time(void);
+int				check_pulse(t_root *root, t_philo *philo);
+int				check_died(t_root *root);
+void			put_log(t_root *root, t_philo *philo, char state);
 
-void					destroy_mutexes(t_root *root);
-void					free_root(t_root *root);
+void			destroy_mutexes(t_root *root);
+void			free_root(t_root *root);
 
 #endif

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   philo_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: achien-k <achien-k@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:04:19 by achien-k          #+#    #+#             */
-/*   Updated: 2023/09/22 13:07:41 by achien-k         ###   ########.fr       */
+/*   Updated: 2023/09/22 19:36:13 by achien-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#ifndef PHILO_BONUS_H
+# define PHILO_BONUS_H
 
 # include <sys/time.h>
 # include <sys/types.h>
@@ -56,7 +56,6 @@ typedef struct s_root
 	int						died;
 }							t_root;
 
-unsigned long long int	get_time(void);
 int						ft_atoi(const char *nptr);
 void					ft_exit(t_root *root, int code, char *msg);
 void					ft_putstr_fd(char *s, int fd);
@@ -67,13 +66,17 @@ void					process_init(t_root *root);
 void					philo_init(t_root *root, int tag);
 void					sems_init(t_root *root);
 
+void					monitoring(t_root *root);
+void					*monitor_meals(void *ptr);
+void					*monitor_end(void *ptr);
 void					kill_children(t_root *root);
-void					finish(t_root *root);
 
 void					ph_think(t_philo *philo);
 void					ph_eat(t_root *root, t_philo *philo);
 
+unsigned long long int	get_time(void);
 void					*check_pulse(void *ptr);
 void					put_log(t_root *root, t_philo *philo, char state);
+void					finish(t_root *root);
 
 #endif

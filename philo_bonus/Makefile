@@ -6,7 +6,7 @@
 #    By: achien-k <achien-k@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/22 14:48:48 by achien-k          #+#    #+#              #
-#    Updated: 2023/09/22 13:11:10 by achien-k         ###   ########.fr        #
+#    Updated: 2023/09/22 19:33:56 by achien-k         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS		=	-Wall -Wextra -Werror -g
 LFLAGS		=	-lpthread -lrt
 INC_DIR		=	includes
 SRC_DIR		=	src
-SRCS		=	general_fts inits think routines main
+SRCS		=	general_fts inits think routines main monitoring
 OBJ_DIR		=	bin
 OBJ			=	$(foreach src, $(SRCS), $(OBJ_DIR)/$(src)_bonus.o)
 VPATH		=	$(SRC_DIR) $(SUB_FOLDERS)
