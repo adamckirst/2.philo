@@ -6,7 +6,7 @@
 #    By: achien-k <achien-k@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/22 14:48:48 by achien-k          #+#    #+#              #
-#    Updated: 2023/09/21 16:58:31 by achien-k         ###   ########.fr        #
+#    Updated: 2023/09/22 13:11:10 by achien-k         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ INC_DIR		=	includes
 SRC_DIR		=	src
 SRCS		=	general_fts inits think routines main
 OBJ_DIR		=	bin
-OBJ			=	$(foreach src, $(SRCS), $(OBJ_DIR)/$(src).o)
+OBJ			=	$(foreach src, $(SRCS), $(OBJ_DIR)/$(src)_bonus.o)
 VPATH		=	$(SRC_DIR) $(SUB_FOLDERS)
 
 all: 			$(NAME)

@@ -6,10 +6,11 @@
 /*   By: achien-k <achien-k@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:10:01 by achien-k          #+#    #+#             */
-/*   Updated: 2023/09/21 10:40:32 by achien-k         ###   ########.fr       */
+/*   Updated: 2023/09/22 18:01:39 by achien-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/philo.h"
+#include <pthread.h>
 
 int	root_nums(t_root *root, char **argv)
 {
@@ -44,8 +45,12 @@ int	root_init(t_root *root, char **argv)
 void	*philosopher(void *ptr)
 {
 	t_philo	*philo;
+	t_root	*root;
 
 	philo = (t_philo *)ptr;
+	root = philo->root;
+	pthread_mutex_lock(&root->mutex[root->philo_qty + TIME_MUT]);
+	pthread_mutex_unlock(&root->mutex[root->philo_qty + TIME_MUT]);
 	if (philo->tag % 2)
 	{
 		if (philo->root->life_ms < philo->root->eat_ms)

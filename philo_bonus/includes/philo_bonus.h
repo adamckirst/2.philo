@@ -6,7 +6,7 @@
 /*   By: achien-k <achien-k@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:04:19 by achien-k          #+#    #+#             */
-/*   Updated: 2023/09/21 17:44:23 by achien-k         ###   ########.fr       */
+/*   Updated: 2023/09/22 13:07:41 by achien-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ typedef struct s_philo
 	int						tag;
 	int						meal_count;
 	int						forks;
-	struct timeval			lasteat;
 	unsigned long long int	lasteat_ms;
 }							t_philo;
 
@@ -47,8 +46,6 @@ typedef struct s_root
 	sem_t					*sem_end;
 	sem_t					*sem_satisfied;
 	sem_t					*sem_died;
-	struct timeval			now;
-	unsigned long long int	now_ms;
 	unsigned long long int	start_ms;
 	int						*pid;
 	int						philo_qty;

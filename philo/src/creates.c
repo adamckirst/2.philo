@@ -6,7 +6,7 @@
 /*   By: achien-k <achien-k@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:08:49 by achien-k          #+#    #+#             */
-/*   Updated: 2023/09/21 10:40:15 by achien-k         ###   ########.fr       */
+/*   Updated: 2023/09/22 18:02:27 by achien-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/philo.h"
@@ -59,10 +59,12 @@ int	create_philo(t_root *root)
 
 	root->philo = ft_calloc(root->philo_qty, sizeof(t_philo));
 	index = -1;
+	pthread_mutex_lock(&root->mutex[root->philo_qty + TIME_MUT]);
 	while (++index < root->philo_qty)
 	{
 		if (philo_init(root, &root->philo[index], index + 1))
 			return (1);
 	}
+	pthread_mutex_unlock(&root->mutex[root->philo_qty + TIME_MUT]);
 	return (0);
 }

@@ -6,10 +6,18 @@
 /*   By: achien-k <achien-k@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:03:06 by achien-k          #+#    #+#             */
-/*   Updated: 2023/09/21 10:40:42 by achien-k         ###   ########.fr       */
+/*   Updated: 2023/09/22 16:14:44 by achien-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/philo.h"
+
+unsigned long long int	get_time(void)
+{
+	struct timeval now;
+
+	gettimeofday(&now, NULL);
+	return ((now.tv_sec * 1000) + (now.tv_usec / 1000));
+}
 
 void	put_log(t_root *root, t_philo *philo, char state)
 {
@@ -22,7 +30,7 @@ void	put_log(t_root *root, t_philo *philo, char state)
 		return ;
 	}
 	pthread_mutex_lock(&root->mutex[root->philo_qty + TIME_MUT]);
-	timestamp = root->now_ms - root->start_ms;
+	timestamp = get_time() - root->start_ms;
 	if (state == 'D')
 	{
 		printf("%ld %d died\n", timestamp, philo->tag);
@@ -58,9 +66,7 @@ int	check_pulse(t_root *root, t_philo *philo)
 		(root->eat_limit > 0 && philo->meal_count == root->eat_limit))
 		return (0);
 	pthread_mutex_lock(&root->mutex[root->philo_qty + TIME_MUT]);
-	gettimeofday(&root->now, NULL);
-	root->now_ms = (root->now.tv_sec * 1000) + (root->now.tv_usec / 1000);
-	if ((int)(root->now_ms - philo->lasteat_ms) >= root->life_ms)
+	if ((int)(get_time() - philo->lasteat_ms) >= root->life_ms)
 	{
 		pthread_mutex_unlock(&root->mutex[root->philo_qty + TIME_MUT]);
 		put_log(root, philo, 'D');

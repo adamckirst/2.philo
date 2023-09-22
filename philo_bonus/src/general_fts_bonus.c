@@ -9,8 +9,7 @@
 /*   Updated: 2023/09/21 16:59:10 by achien-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../includes/philo.h"
-#include <semaphore.h>
+#include "../includes/philo_bonus.h"
 
 void	ft_exit(t_root *root, int code, char *msg)
 {
