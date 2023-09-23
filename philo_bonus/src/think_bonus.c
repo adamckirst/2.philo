@@ -6,7 +6,7 @@
 /*   By: achien-k <achien-k@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:53:10 by achien-k          #+#    #+#             */
-/*   Updated: 2023/09/22 17:29:31 by achien-k         ###   ########.fr       */
+/*   Updated: 2023/09/23 14:39:54 by achien-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/philo_bonus.h"
@@ -27,8 +27,8 @@ void	ph_think(t_philo *philo)
 
 void	ph_eat(t_root *root, t_philo *philo)
 {
-	put_log(root, philo, 'E');
 	sem_wait(philo->sem_time);
+	put_log(root, philo, 'E');
 	philo->lasteat_ms = get_time();
 	sem_post(philo->sem_time);
 	usleep(root->eat_ms * 1000);

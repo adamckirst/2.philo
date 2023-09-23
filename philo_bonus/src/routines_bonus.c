@@ -6,10 +6,11 @@
 /*   By: achien-k <achien-k@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 14:03:06 by achien-k          #+#    #+#             */
-/*   Updated: 2023/09/22 19:37:45 by achien-k         ###   ########.fr       */
+/*   Updated: 2023/09/23 14:39:43 by achien-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/philo_bonus.h"
+#include <semaphore.h>
 
 unsigned long long int	get_time(void)
 {
@@ -26,7 +27,10 @@ void	put_log(t_root *root, t_philo *philo, char state)
 	timestamp = get_time() - root->start_ms;
 	sem_wait(root->sem_print);
 	if (state == 'D')
+	{
 		printf("%lld %d died\n", timestamp, philo->tag);
+		return ;
+	}
 	else if (state == 'F')
 		printf("%lld %d has taken a fork\n", timestamp, philo->tag);
 	else if (state == 'E')
@@ -48,9 +52,9 @@ void	*check_pulse(void *ptr)
 		sem_wait(philo->sem_time);
 		if ((int)(get_time() - philo->lasteat_ms) >= philo->root->life_ms)
 		{
-			sem_post(philo->sem_time);
 			sem_wait(philo->root->sem_died);
 			put_log(philo->root, philo, 'D');
+			sem_post(philo->sem_time);
 			sem_post(philo->root->sem_end);
 			return (NULL);
 		}
